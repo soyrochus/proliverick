@@ -1,0 +1,79 @@
+Generador de contenido/ejerccios
+
+
+Intento dar un poco más de detalle sobre la idea del generador de contenidos/ejercisios que tengo, no sé si sería posible (me temo que es muy difícil).
+
+ 
+
+Tenemos varios ejercicios recurrentes que usamos en clase, y seria genial poder adaptarlos a los diferentes clientes/alumnos, que se hace pero requiere mucha inversión de tiempo (solo escribir este correo con estos ejemplos me ha llevado una hora). En mi mundo ideal, podría meter una “temática” o “enfoque”, (sectorial – arquitectura, agroalimentaria, construcción, jurídico, etc. y/o situacional – una negociación, una presentación, entrevista de trabajo, viajar, etc. y/o gramatical – un verbo en concreto, un tiempo verbal, un tipo de pronombre) y el programa generaría una serie de estos ejercicios usando vocabulario o expresiones relacionados con el enfoque introducido dentro del marco de cada ejercicio.
+
+ 
+
+Ejemplos de ejercicios:
+
+Inverse Interrogative generation (the student creates the question based on the answer already provided) B) Short answer questions C) Negative question generation (the student asks Why based on the sentence provided) D) 2nd, 3rd, and mixed Conditionals E) Simple past vs present perfect with (mostly) irregular verbs F) Present perfect with never and (mostly) irregular verbs (questions designed to elicit negative answers)  G) Questions in the accusative H) Translations (de inglés a español).
+ 
+
+Ejemplos de cada ejercicio, si elijo: arquitectura
+
+Teacher: It took 15 months to complete the project / Student: How long did it take to complete the project?
+Teacher: The contractor doesn’t have the blueprint / Student: Why doesn’t the contractor have the blueprint?
+
+Teacher: The new concept was presented yesterday. / Student: When was the new concept presented?
+
+Etc
+
+T: Does it take three days to lay a foundation? / S: No it doesn’t.
+T: Will you write a report for your boss tomorrow? / S: Yes it will.
+
+T: Should an architect have real-world experience? / S: Yes he should.
+
+Etc
+
+T: It doesn’t take long to do it. / S: Why doesn’t it take long to do it?
+T: We don’t need to reinforce the structure / S: Why don’t we need to reinforce the structure?
+
+                T: The boss wanted to hire a new contractor / S: Why did the boss want to hire a new contractor?
+
+(2nd conditional) T: The project is taking long because the terrain is difficult / S: If the terrain weren’t difficult, the project wouldn’t be taking long.
+(3rd conditional) T: The building wasn’t completed because the license got suspended. / S: If the license hadn’t gotten suspended, the building would have been completed.
+
+(mixed) T: The payment is overdue because the client declared bankruptcy. / S: If the client hadn’t declared bankruptcy, the payment wouldn’t be late.
+
+Etc
+
+T: How many new structures did you build last year? …And so far this year? / S: We built 5 structures last year. We’ve built 7 structures this year.
+T: How many times did you pay your providers last month?...And so far this month?
+
+T: How often did you visit worksites last week? And so far this week?
+
+Etc
+
+T: When was the last time you visited a building site in Mongolia? / S: I’ve never visited a building site in Mongolia.
+T: When was the last time you went to a conference on Christmas? / S: I’ve never gone to a conference on Christmas.
+
+Etc.
+
+Do you want your company to start more new projects?
+How many projects do you want them to start?
+
+When do you want them to start?
+
+Do architectural firms need their employees to be creative?
+
+Why do they need them to be creative?
+
+Etc.
+
+Sentences in Spanish, with translations to English
+La catedral de Burgos es una obra maestra arquitectónica / The Burgos cathedral is an architectural masterpiece
+
+El jefe de proyecto está de baja / The project manager is on medical leave.
+
+Etc.
+
+ 
+
+No sé cómo de viable lo ves…
+
+ 
