@@ -11,7 +11,9 @@ from enum import Enum
 from pathlib import Path
 import pandas as pd
 from docx import Document
-
+from simpleaichat import AIChat
+from dotenv import load_dotenv
+        
 class OutputType(Enum):
     TEXT = 'Text'
     WORD = 'Word document'
@@ -19,8 +21,26 @@ class OutputType(Enum):
 
 class AssesementCreator:
     
+    def __init__(self):
+        load_dotenv()
+        self.ai = AIChat( model="gpt-4", console= False, system='You are a system which generated questions for foreign languages students' )
+
     def get_inverse_interrogative(self) -> List[str]:
-        return ""
+        prompt  ="""
+Inverse Interrogative generation of questions is the methology  where the student creates the question based on the answer already provided
+
+Examples
+
+Teacher: It took 15 months to complete the project / Student: How long did it take to complete the project?
+Teacher: The contractor doesn’t have the blueprint / Student: Why doesn’t the contractor have the blueprint?
+Teacher: The new concept was presented yesterday. / Student: When was the new concept presented?
+
+Please create 10 questions with corresponding using the inverse interrogative method.
+
+Format: Question / Answer
+
+        """
+        return self.ai(prompt)    
      
     @staticmethod
     def write_to_file(output_type: OutputType, output_path: Path, data: List[str]):
@@ -43,9 +63,13 @@ class AssesementCreator:
 # Example Usage:
 
 if __name__ == '__main__':
-  
-    data = ['Question 1', 'Question 2', 'Question 3']
-    AssesementCreator.write_to_file(OutputType.TEXT, Path("output.txt"), data)
-    AssesementCreator.write_to_file(OutputType.WORD, Path("output.docx"), data)
-    AssesementCreator.write_to_file(OutputType.EXCEL, Path("output.xlsx"), data)
+   
+    creator = AssesementCreator()
+    data = creator.get_inverse_interrogative()
+    print(data)
+    
+
+    # AssesementCreator.write_to_file(OutputType.TEXT, Path("output.txt"), data)
+    # AssesementCreator.write_to_file(OutputType.WORD, Path("output.docx"), data)
+    # AssesementCreator.write_to_file(OutputType.EXCEL, Path("output.xlsx"), data)
     

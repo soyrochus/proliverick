@@ -20,7 +20,7 @@ class Gui(ThemedTk):
         self.geometry('800x400')
         self.configure(bg=self.tk.eval('ttk::style lookup TFrame -background'))
         
-        
+
         # Create a main frame
         main_frame = ttk.Frame(self)
         main_frame.pack(expand=True, fill="both", padx=20, pady=20)
