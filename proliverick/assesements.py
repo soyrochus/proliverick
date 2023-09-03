@@ -6,7 +6,14 @@ according to particular patterns using the OpenAI API.
 @copyright: Copyright © 2023 Iwan van der Kleijn
 @license: MIT
 """
-from proliverick import main
 
-if __name__ == "__main__":
-    main()
+
+
+from typing import List
+
+
+class AssesementCreator:
+    
+    def get_inverse_interrogative(self) -> List[str]:
+        return ""
+     

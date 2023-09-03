@@ -6,7 +6,8 @@ according to particular patterns using the OpenAI API.
 @copyright: Copyright © 2023 Iwan van der Kleijn
 @license: MIT
 """
-from proliverick import main
+
+from proliverick.cli import main
 
 if __name__ == "__main__":
     main()

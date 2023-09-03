@@ -11,12 +11,13 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import messagebox
 from ttkthemes import ThemedTk
+import tkinter.filedialog
 
 class Gui(ThemedTk):
     def __init__(self):
         super().__init__(theme="arc")
         self.title("Assessment Elements Generator")
-        self.geometry('800x300')
+        self.geometry('800x400')
         self.configure(bg=self.tk.eval('ttk::style lookup TFrame -background'))
         
         
@@ -46,27 +47,47 @@ class Gui(ThemedTk):
         self.option_number = ttk.OptionMenu(main_frame, self.var_number, *range(1, 17))
         self.option_number.grid(row=3, column=1, sticky="we")
         
+        # Output File Type
+        self.label_file_type = ttk.Label(main_frame, text="Output File Type", anchor="w")
+        self.label_file_type.grid(row=4, column=0, sticky="w", pady=(20, 0))
+        self.var_file_type = tk.StringVar(value="Text")
+        self.option_file_type = ttk.OptionMenu(main_frame, self.var_file_type, "Text", "Word document", "Excel sheet")
+        self.option_file_type.grid(row=4, column=1, sticky="we")
+        
+        # Output File Path
+        self.label_file_path = ttk.Label(main_frame, text="Output File Path", anchor="w")
+        self.label_file_path.grid(row=5, column=0, sticky="w", pady=(20, 0))
+        self.entry_file_path = ttk.Entry(main_frame)
+        self.entry_file_path.grid(row=5, column=1, sticky="we")
+        self.button_file_path = ttk.Button(main_frame, text="Browse", command=self.browse_file)
+        self.button_file_path.grid(row=5, column=2, sticky="w")
+        
         # Buttons
         self.button_cancel = ttk.Button(main_frame, text="Cancel", command=self.destroy)
-        self.button_cancel.grid(row=4, column=2, sticky="e", pady=20)
+        self.button_cancel.grid(row=6, column=2, sticky="e", pady=20)
         self.button_ok = ttk.Button(main_frame, text="OK", command=self.perform_action)
-        self.button_ok.grid(row=4, column=1, sticky="e", pady=20, padx=(0, 10))
+        self.button_ok.grid(row=6, column=1, sticky="e", pady=20, padx=(0, 10))
         
         # Configure the grid
         main_frame.columnconfigure(1, weight=1)
         
+    def browse_file(self):
+        file_path = tk.filedialog.asksaveasfilename(defaultextension="", 
+                                                    filetypes=[("Text files", "*.txt"),
+                                                               ("Word documents", "*.docx"),
+                                                               ("Excel files", "*.xlsx"),
+                                                               ("All files", "*.*")])
+        self.entry_file_path.delete(0, tk.END)
+        self.entry_file_path.insert(0, file_path)
+        
     def perform_action(self):
         title = self.entry_title.get()
         element_type = self.var_type.get()
-        selected_number = self.listbox_number.curselection()
-        if not selected_number:
-            messagebox.showerror("Error", "Please select a number of elements")
-            return
-        number_of_elements = int(self.listbox_number.get(selected_number[0]))
-        data = {'title': title, 'element_type': element_type, 'number_of_elements': number_of_elements}
+        number_of_elements = self.var_number.get()
+        output_file_type = self.var_file_type.get()
+        output_file_path = self.entry_file_path.get()
+        data = {'title': title, 'element-type': element_type, 'number-of-elements': number_of_elements, 
+            'output-file-type': output_file_type, 'output-file-path': output_file_path}
         print(data)  # For now, just print the data. Later, you can replace this with the actual function to generate the assessment elements.
         self.destroy()
 
-if __name__ == "__main__":
-    app = Gui(tk.Tk)
-    app.mainloop()
