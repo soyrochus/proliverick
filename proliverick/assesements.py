@@ -29,47 +29,127 @@ class AssesementCreator:
         prompt  ="""
 Inverse Interrogative generation of questions is the methology  where the student creates the question based on the answer already provided
 
+Format: Question: {generated question}<new-line>
+        Answer: {generated answer}<new-line>
+        <new-line>
+        <next-question>
+        
+        etc.
+        
 Examples
 
-Teacher: It took 15 months to complete the project / Student: How long did it take to complete the project?
-Teacher: The contractor doesn’t have the blueprint / Student: Why doesn’t the contractor have the blueprint?
-Teacher: The new concept was presented yesterday. / Student: When was the new concept presented?
+Question: How long did it take to complete the project?
+Answer: It took 15 months to complete the project
 
-Please create 10 questions with corresponding using the inverse interrogative method.
+Question: Why doesn’t the contractor have the blueprint?
+Answer: The contractor doesn’t have the blueprint
 
-Format: Question / Answer
+Question: The new concept was presented yesterday.
+Answer: When was the new concept presented?
+
+The topics may contain the following:
+- Daily situations
+- Work
+- History
+- Geography
+- Science
+- Technology
+- Art
+- Culture
+- Sports
+- Politics  (non polemical)
+- Economy
+- Society
+- Environment
+- Health
+- Education
+- Religion
+- Philosophy
+- Psychology
+- Law
+- Language
+- Literature
+- Music
+- Cinema
+- Television
+- Media
+
+Generate 10 questions with answers using the inverse interrogative method.
 
         """
         return self.ai(prompt)    
      
     @staticmethod
-    def write_to_file(output_type: OutputType, output_path: Path, data: List[str]):
+    def write_to_file(output_type: OutputType, output_path: Path, data: str):
+        
+        data_list = data.split('\n')
         match output_type:
             case OutputType.TEXT:
                 with output_path.open('w') as f:
-                    f.write('\n'.join(data))
+                    f.write(data)
             case OutputType.WORD:
                 doc = Document()
-                for line in data:
+                for line in data_list:
                     doc.add_paragraph(line)
                 doc.save(output_path)
             case OutputType.EXCEL:
-                df = pd.DataFrame(data, columns=["Data"])
+                df = pd.DataFrame(data_list, columns=["Data"])
                 df.to_excel(output_path, index=False)
             case _:
                 raise ValueError(f"Unsupported output type: {output_type}")
 
 
+def create_assesement(data: dict):
+    creator = AssesementCreator()
+    if data['element-type'] == "Open question":
+        data = creator.get_inverse_interrogative()
+        creator.write_to_file(data['output-file-type'], Path(data['output-file-path']), data)
+    else:
+        raise ValueError(f"Unsupported element type: {data['element-type']}")
+    AssesementCreator.write_to_file(data['output-file-type'], Path(data['output-file-path']), data)
 # Example Usage:
 
 if __name__ == '__main__':
-   
-    creator = AssesementCreator()
-    data = creator.get_inverse_interrogative()
-    print(data)
+    pass
+    # creator = AssesementCreator()
+    # data = creator.get_inverse_interrogative()
+    # print(data)
     
 
     # AssesementCreator.write_to_file(OutputType.TEXT, Path("output.txt"), data)
     # AssesementCreator.write_to_file(OutputType.WORD, Path("output.docx"), data)
-    # AssesementCreator.write_to_file(OutputType.EXCEL, Path("output.xlsx"), data)
+    
+    # data = """Question: What language is predominantly spoken in Brazil?
+    # Answer: Portuguese is predominantly spoken in Brazil.
+
+    # Question: Who is the author of the novel "Pride and Prejudice"?
+    # Answer: The author of "Pride and Prejudice" is Jane Austen.
+
+    # Question: What is the capital of Australia?
+    # Answer: The capital of Australia is Canberra.
+
+    # Question: Who won the FIFA World Cup in 2018?
+    # Answer: France won the FIFA World Cup in 2018.
+
+    # Question: What is the primary function of the heart in the human body?
+    # Answer: The primary function of the heart is to pump blood throughout the body.
+
+    # Question: When was the internet invented?
+    # Answer: The internet was invented in 1969.
+
+    # Question: Who painted the Mona Lisa?
+    # Answer: Leonardo da Vinci painted the Mona Lisa.
+
+    # Question: What is the largest planet in our solar system?
+    # Answer: Jupiter is the largest planet in our solar system.
+
+    # Question: Who is the current president of the United States?
+    # Answer: The current president of the United States is Joe Biden.
+
+    # Question: What is the main religion practiced in India?
+    # Answer: Hinduism is the main religion practiced in India."""
+
+    #     AssesementCreator.write_to_file(OutputType.TEXT, Path("output.txt"), data)
+    #     AssesementCreator.write_to_file(OutputType.WORD, Path("output.docx"), data)
+    #     AssesementCreator.write_to_file(OutputType.EXCEL, Path("output.xlsx"), data)
     

@@ -18,7 +18,7 @@ def main():
     parser = argparse.ArgumentParser(description='Generate assessment elements')
     parser.add_argument('-g', '--gui', action='store_true', help='Start the GUI application')
     parser.add_argument('--title', '-t', type=str, help='Assessment Title')
-    parser.add_argument('--element-type', '-e', type=str, choices=["Open question", "Deduce the question"], default="Open question", help='Elements Type')
+    parser.add_argument('--element-type', '-e', type=str, choices=["Reverse interrogation", "Deduce the question"], default="Reverse interrogation", help='Elements Type')
     parser.add_argument('--number-of-elements', '-n', type=int, default=1, help='Number of Elements')
     parser.add_argument('--output-file-type', '-oft', type=str, choices=["Text", "Word document", "Excel sheet"], default="Text", help='Output File Type')
     parser.add_argument('--output-file-path', '-ofp', type=str, help='Output File Path')

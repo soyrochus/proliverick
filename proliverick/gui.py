@@ -12,6 +12,7 @@ import tkinter.ttk as ttk
 from tkinter import messagebox
 from ttkthemes import ThemedTk
 import tkinter.filedialog
+from proliverick.assesements import create_assesement
 
 class Gui(ThemedTk):
     def __init__(self):
@@ -34,8 +35,8 @@ class Gui(ThemedTk):
         # Elements Type
         self.label_type = ttk.Label(main_frame, text="Elements Type", anchor="w")
         self.label_type.grid(row=1, column=0, sticky="w", pady=(20, 0))
-        self.var_type = tk.StringVar(value="Open question")
-        self.radio_open = ttk.Radiobutton(main_frame, text="Open question", variable=self.var_type, value="Open question")
+        self.var_type = tk.StringVar(value="Reverse interrogation")
+        self.radio_open = ttk.Radiobutton(main_frame, text="Reverse interrogation", variable=self.var_type, value="Open question")
         self.radio_open.grid(row=1, column=1, sticky="w")
         self.radio_deduce = ttk.Radiobutton(main_frame, text="Deduce the question", variable=self.var_type, value="Deduce the question")
         self.radio_deduce.grid(row=2, column=1, sticky="w")
@@ -89,5 +90,10 @@ class Gui(ThemedTk):
         data = {'title': title, 'element-type': element_type, 'number-of-elements': number_of_elements, 
             'output-file-type': output_file_type, 'output-file-path': output_file_path}
         print(data)  # For now, just print the data. Later, you can replace this with the actual function to generate the assessment elements.
+        try:
+            create_assesement(data)
+        except Exception as e:
+            messagebox.showerror("Error", str(e))   
+            
         self.destroy()
 
