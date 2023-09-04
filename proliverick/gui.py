@@ -36,7 +36,7 @@ class Gui(ThemedTk):
         self.label_type = ttk.Label(main_frame, text="Elements Type", anchor="w")
         self.label_type.grid(row=1, column=0, sticky="w", pady=(20, 0))
         self.var_type = tk.StringVar(value="Reverse interrogation")
-        self.radio_open = ttk.Radiobutton(main_frame, text="Reverse interrogation", variable=self.var_type, value="Open question")
+        self.radio_open = ttk.Radiobutton(main_frame, text="Reverse interrogation", variable=self.var_type, value="Reverse interrogation")
         self.radio_open.grid(row=1, column=1, sticky="w")
         self.radio_deduce = ttk.Radiobutton(main_frame, text="Deduce the question", variable=self.var_type, value="Deduce the question")
         self.radio_deduce.grid(row=2, column=1, sticky="w")
@@ -52,7 +52,7 @@ class Gui(ThemedTk):
         self.label_file_type = ttk.Label(main_frame, text="Output File Type", anchor="w")
         self.label_file_type.grid(row=4, column=0, sticky="w", pady=(20, 0))
         self.var_file_type = tk.StringVar(value="Text")
-        self.option_file_type = ttk.OptionMenu(main_frame, self.var_file_type, "Text", "Word document", "Excel sheet")
+        self.option_file_type = ttk.OptionMenu(main_frame, self.var_file_type, "Text", "Text", "Word document", "Excel sheet")
         self.option_file_type.grid(row=4, column=1, sticky="we")
         
         # Output File Path
@@ -89,11 +89,12 @@ class Gui(ThemedTk):
         output_file_path = self.entry_file_path.get()
         data = {'title': title, 'element-type': element_type, 'number-of-elements': number_of_elements, 
             'output-file-type': output_file_type, 'output-file-path': output_file_path}
-        print(data)  # For now, just print the data. Later, you can replace this with the actual function to generate the assessment elements.
+         
         try:
             create_assesement(data)
+            messagebox.showinfo("Done", f"File written to {output_file_path}") 
         except Exception as e:
             messagebox.showerror("Error", str(e))   
             
-        self.destroy()
+        #self.destroy()
 

@@ -7,12 +7,17 @@ according to particular patterns using the OpenAI API.
 @license: MIT
 """
 import argparse
+from proliverick.assesements import create_assesement
 from proliverick.gui import Gui
 
 def perform_action_cli(args):
     data = {'title': args.title, 'element-type': args.element_type, 'number-of-elements': args.number_of_elements, 
             'output-file-type': args.output_file_type, 'output-file-path': args.output_file_path}
-    print(data)
+    try:
+        create_assesement(data)
+        print(f"File written to {data['output_file_path']}") 
+    except Exception as e:
+        print(f"Error: {e}") 
 
 def main():
     parser = argparse.ArgumentParser(description='Generate assessment elements')
