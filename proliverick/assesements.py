@@ -14,6 +14,8 @@ import pandas as pd
 from docx import Document
 from simpleaichat import AIChat
 from dotenv import load_dotenv
+
+from proliverick import prompts
         
 class OutputType(Enum):
     TEXT = 'Text'
@@ -32,60 +34,13 @@ class AssesementCreator:
     
     def __init__(self):
         load_dotenv()
-        self.ai = AIChat( model="gpt-4", console= False, system='You are a system which generated questions for foreign languages students' )
+        #params = {"temperature": 1.5}  #"max_tokens": 100}  # a temperature of 0.0 is deterministic
+        #self.ai = AIChat(model="gpt-4", console= False, params=params)  #, system='You are a system which generated questions for foreign languages students' )
 
+        self.ai = AIChat(model="gpt-4", console= False)
+        
     def get_inverse_interrogative(self, num: int) -> List[str]:
-        prompt  = f"""
-Inverse Interrogative generation of questions is the methology  where the student creates the question based on the answer already provided
-
-Format: Question: [generated question]<new-line>
-        Answer: [generated answer]<new-line>
-        <new-line>
-        <next-question>
-        
-        etc.
-        
-Examples
-
-Question: How long did it take to complete the project?
-Answer: It took 15 months to complete the project
-
-Question: Why doesn’t the contractor have the blueprint?
-Answer: The contractor doesn’t have the blueprint
-
-Question: The new concept was presented yesterday.
-Answer: When was the new concept presented?
-
-The topics may contain the following:
-- Daily situations
-- Work
-- History
-- Geography
-- Science
-- Technology
-- Art
-- Culture
-- Sports
-- Politics  (non polemical)
-- Economy
-- Society
-- Environment
-- Health
-- Education
-- Religion
-- Philosophy
-- Psychology
-- Law
-- Language
-- Literature
-- Music
-- Cinema
-- Television
-- Media
-
-Generate {num} questions with answers using the inverse interrogative method.
-
-        """
+        prompt  = prompts.inverse_interrogative_prompt(num)
         return self.ai(prompt)    
      
     @staticmethod

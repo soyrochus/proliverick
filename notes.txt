@@ -1,0 +1,4 @@
+pyinstall command to package into executable
+
+pyinstaller --name proliverick --onefile proliverick/__main__.py
+
