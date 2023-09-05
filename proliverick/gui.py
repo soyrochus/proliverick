@@ -46,7 +46,7 @@ class Gui(ThemedTk):
         self.label_number = ttk.Label(main_frame, text="Number of Elements", anchor="w")
         self.label_number.grid(row=3, column=0, sticky="w", pady=(20, 0))
         self.var_number = tk.IntVar(value=1)
-        self.option_number = ttk.OptionMenu(main_frame, self.var_number, *range(1, 17))
+        self.option_number = ttk.OptionMenu(main_frame, self.var_number, 1, *range(1, 17))
         self.option_number.grid(row=3, column=1, sticky="we")
         
         # Output File Type
@@ -92,8 +92,8 @@ class Gui(ThemedTk):
             'output-file-type': output_file_type, 'output-file-path': output_file_path}
          
         try:
-            #exec_task_with_progress(self.root,"Sending prompt...", lambda: create_assesement(data))
-            create_assesement(data)
+            exec_task_with_progress(self,"Sending prompt...", lambda: create_assesement(data))
+            #create_assesement(data)
             messagebox.showinfo("Done", f"File written to {output_file_path}") 
         except Exception as e:
             messagebox.showerror("Error", str(e))   
