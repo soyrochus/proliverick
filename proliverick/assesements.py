@@ -6,6 +6,7 @@ according to particular patterns using the OpenAI API.
 @copyright: Copyright © 2023 Iwan van der Kleijn
 @license: MIT
 """
+import time
 from typing import List
 from enum import Enum
 from pathlib import Path
@@ -115,7 +116,9 @@ Generate {num} questions with answers using the inverse interrogative method.
 def create_assesement(data: dict):
     creator = AssesementCreator()
     if data['element-type'] == "Reverse interrogation":
+        #items = "lala\nlala"
         items = creator.get_inverse_interrogative(data['number-of-elements'])
+        #time.sleep(5)
         output_type = OutputType.initialize_from_str(data['output-file-type'])
         output_path = Path(data['output-file-path'])
         title = data['title']

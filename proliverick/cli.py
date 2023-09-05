@@ -8,6 +8,7 @@ according to particular patterns using the OpenAI API.
 """
 import argparse
 from proliverick.assesements import create_assesement
+from proliverick.console_tools import spinner
 from proliverick.gui import Gui
 
 VERSION_LABEL = "0.1.0"
@@ -22,7 +23,9 @@ def perform_action_cli(args):
     data = {'title': default_string(args.title), 'element-type': args.element_type, 'number-of-elements': args.number_of_elements, 
             'output-file-type': default_string(args.output_file_type, 'Text'), 'output-file-path': default_string(args.output_file_path, 'output.txt')}
     try:
+        #with spinner("Create assement (contacting AI)..."):
         create_assesement(data)
+            
         print(f"File written to {data['output-file-path']}") 
     except Exception as e:
         print(f"Error: {e}") 

@@ -13,6 +13,7 @@ from tkinter import messagebox
 from ttkthemes import ThemedTk
 import tkinter.filedialog
 from proliverick.assesements import create_assesement
+from proliverick.gui_tools import exec_task_with_progress
 
 class Gui(ThemedTk):
     def __init__(self):
@@ -91,6 +92,7 @@ class Gui(ThemedTk):
             'output-file-type': output_file_type, 'output-file-path': output_file_path}
          
         try:
+            #exec_task_with_progress(self.root,"Sending prompt...", lambda: create_assesement(data))
             create_assesement(data)
             messagebox.showinfo("Done", f"File written to {output_file_path}") 
         except Exception as e:
